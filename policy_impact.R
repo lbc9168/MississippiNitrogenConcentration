@@ -21,11 +21,16 @@ Y = a0 + a1 %*% Price_m + a2 %*% Flow_m + a3 %*% Precp_m + a4 %*% CP_m
 Y = a0 + (-0.5324) * log(Price_m) + 1.09 * log(Flow_m) + (-0.3263) * log(Precp_m) + 0.2863 * log(CP_m)
 conc = exp(Y)
 
+conc_test = exp(Y)
+
 Y2 = a0 + (-0.5324) * log(Price_m*1.25) + 1.09 * log(Flow_m) + (-0.3263) * log(Precp_m) + 0.2863 * log(CP_m)
 conc2 = exp(Y2)
 diff = conc2-conc
 
-percent = diff/N
+Y2 - Y
+
+
+percent = diff/Y
 plot(percent)
 mean(percent)
 
@@ -34,6 +39,12 @@ Y3 = a0 + (-0.5324) * log(Price_m*1.15) + 1.09 * log(Flow_m) + (-0.3263) * log(P
 conc3 = exp(Y3)
 diff2 = conc3-conc
 
-percent2 = diff2/N
+Y3 - Y
+
+
+
+diff_test = as.matrix(exp(Y),conc3)
+
+percent2 = diff2/Y
 plot(percent2)
 mean(percent2)
