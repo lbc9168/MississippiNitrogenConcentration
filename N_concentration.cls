@@ -7,7 +7,7 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = True
-Sub N_Price()
+Sub N_Concentration()
 
 Dim Total As Single
 Dim Count As Single
@@ -20,7 +20,7 @@ Dim d As Integer
 
 Total = 0
 Count = 0
-Mon = 12
+Mon = Month(Cells(2, 1))
 k = 1
 
 Range("A1").Select
