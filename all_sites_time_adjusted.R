@@ -72,3 +72,110 @@ ILLI_VC.lm.10m = with(ILLI_VC[ILLI_VC$NP10 != 0,], lm(log(N_Conc) ~ log(N_Price)
 summary(ILLI_VC.lm.10m)
 
 
+ILLI_VC.lm.11m = with(ILLI_VC[ILLI_VC$NP11 != 0,], lm(log(N_Conc) ~ log(N_Price) + log(NP1) + log(NP2) + log(NP3) + log(NP4) +
+                                                        log(NP5) + log(NP6) + log(NP7) + log(NP8) +log(NP9) + log(NP10) + 
+                                                        log(NP11) + log(Flow) + 
+                                                        log(CSratio) + log(CSR1) + log(CSR2) + log(CSR3) + log(CSR4) + log(CSR5) +
+                                                        log(CSR6) + log(CSR7) + log(CSR8) + log(CSR9) + 
+                                                        log(CSR10) + log(CSR11) + log(NP_3mAvg)+ as.factor(Month)))
+summary(ILLI_VC.lm.11m)
+
+
+ILLI_VC.lm.12m = with(ILLI_VC[ILLI_VC$NP12 != 0,], lm(log(N_Conc) ~ log(N_Price) + log(NP1) + log(NP2) + log(NP3) + log(NP4) +
+                                                        log(NP5) + log(NP6) + log(NP7) + log(NP8) +log(NP9) + log(NP10) + 
+                                                        log(NP11) + log(NP12) + log(Flow) + 
+                                                        log(CSratio) + log(CSR1) + log(CSR2) + log(CSR3) + log(CSR4) + log(CSR5) +
+                                                        log(CSR6) + log(CSR7) + log(CSR8) + log(CSR9) + 
+                                                        log(CSR10) + log(CSR11) + log(CSR12) + log(NP_3mAvg)+ as.factor(Month)))
+summary(ILLI_VC.lm.12m)
+
+
+## IOWA_WAP
+
+IOWA_WAP = read.csv("IOWA_WAP.csv")
+
+IOWA_WAP.lm = with(IOWA_WAP, lm(log(N_Conc) ~ log(N_Price) + log(Flow) + log(CSratio) + log(NP_3mAvg)+ as.factor(Month)))
+summary(IOWA_WAP.lm)
+
+
+IOWA_WAP.lm.1m = with(IOWA_WAP, lm(log(N_Conc) ~ log(N_Price) + log(NP1) + log(Flow) + 
+                                   log(CSratio) + log(CSR1) + log(NP_3mAvg)+ as.factor(Month)))
+summary(IOWA_WAP.lm.1m)
+
+
+IOWA_WAP.lm.2m = with(IOWA_WAP, lm(log(N_Conc) ~ log(N_Price) + log(NP1) + log(NP2) + log(Flow) + 
+                                   log(CSratio) + log(CSR1) + log(CSR2) + log(NP_3mAvg)+ as.factor(Month)))
+summary(IOWA_WAP.lm.2m)
+
+
+IOWA_WAP.lm.3m = with(IOWA_WAP[IOWA_WAP$NP3 != 0,], lm(log(N_Conc) ~ log(N_Price) + log(NP1) + log(NP2) + log(NP3) + log(Flow) + 
+                                                      log(CSratio) + log(CSR1) + log(CSR2) + log(CSR3) + log(NP_3mAvg)+ as.factor(Month)))
+summary(IOWA_WAP.lm.3m)
+
+
+IOWA_WAP.lm.4m = with(IOWA_WAP[IOWA_WAP$NP4 != 0,], lm(log(N_Conc) ~ log(N_Price) + log(NP1) + log(NP2) + log(NP3) + log(NP4) +
+                                                      log(Flow) + 
+                                                      log(CSratio) + log(CSR1) + log(CSR2) + log(CSR3) + log(CSR4) +
+                                                      log(NP_3mAvg)+ as.factor(Month)))
+summary(IOWA_WAP.lm.4m)
+
+
+IOWA_WAP.lm.5m = with(IOWA_WAP[IOWA_WAP$NP5 != 0,], lm(log(N_Conc) ~ log(N_Price) + log(NP1) + log(NP2) + log(NP3) + log(NP4) +
+                                                      log(NP5) + log(Flow) + 
+                                                      log(CSratio) + log(CSR1) + log(CSR2) + log(CSR3) + log(CSR4) + log(CSR5) +
+                                                      log(NP_3mAvg)+ as.factor(Month)))
+summary(IOWA_WAP.lm.5m)
+
+
+IOWA_WAP.lm.6m = with(IOWA_WAP[IOWA_WAP$NP6 != 0,], lm(log(N_Conc) ~ log(N_Price) + log(NP1) + log(NP2) + log(NP3) + log(NP4) +
+                                                      log(NP5) + log(NP6) + log(Flow) + 
+                                                      log(CSratio) + log(CSR1) + log(CSR2) + log(CSR3) + log(CSR4) + log(CSR5) +
+                                                      log(CSR6) + log(NP_3mAvg)+ as.factor(Month)))
+summary(IOWA_WAP.lm.6m)
+
+
+IOWA_WAP.lm.7m = with(IOWA_WAP[IOWA_WAP$NP7 != 0,], lm(log(N_Conc) ~ log(N_Price) + log(NP1) + log(NP2) + log(NP3) + log(NP4) +
+                                                      log(NP5) + log(NP6) + log(NP7) + log(Flow) + 
+                                                      log(CSratio) + log(CSR1) + log(CSR2) + log(CSR3) + log(CSR4) + log(CSR5) +
+                                                      log(CSR6) + log(CSR7) + log(NP_3mAvg)+ as.factor(Month)))
+summary(IOWA_WAP.lm.7m)
+
+
+IOWA_WAP.lm.8m = with(IOWA_WAP[IOWA_WAP$NP8 != 0,], lm(log(N_Conc) ~ log(N_Price) + log(NP1) + log(NP2) + log(NP3) + log(NP4) +
+                                                      log(NP5) + log(NP6) + log(NP7) + log(NP8) + log(Flow) + 
+                                                      log(CSratio) + log(CSR1) + log(CSR2) + log(CSR3) + log(CSR4) + log(CSR5) +
+                                                      log(CSR6) + log(CSR7) + log(CSR8) + log(NP_3mAvg)+ as.factor(Month)))
+summary(IOWA_WAP.lm.8m)
+
+
+IOWA_WAP.lm.9m = with(IOWA_WAP[IOWA_WAP$NP9 != 0,], lm(log(N_Conc) ~ log(N_Price) + log(NP1) + log(NP2) + log(NP3) + log(NP4) +
+                                                      log(NP5) + log(NP6) + log(NP7) + log(NP8) +log(NP9) + log(Flow) + 
+                                                      log(CSratio) + log(CSR1) + log(CSR2) + log(CSR3) + log(CSR4) + log(CSR5) +
+                                                      log(CSR6) + log(CSR7) + log(CSR8) + log(CSR9) + log(NP_3mAvg)+ as.factor(Month)))
+summary(IOWA_WAP.lm.9m)
+
+
+IOWA_WAP.lm.10m = with(IOWA_WAP[IOWA_WAP$NP10 != 0,], lm(log(N_Conc) ~ log(N_Price) + log(NP1) + log(NP2) + log(NP3) + log(NP4) +
+                                                        log(NP5) + log(NP6) + log(NP7) + log(NP8) +log(NP9) + log(NP10) + log(Flow) + 
+                                                        log(CSratio) + log(CSR1) + log(CSR2) + log(CSR3) + log(CSR4) + log(CSR5) +
+                                                        log(CSR6) + log(CSR7) + log(CSR8) + log(CSR9) + 
+                                                        log(CSR10) + log(NP_3mAvg)+ as.factor(Month)))
+summary(IOWA_WAP.lm.10m)
+
+
+IOWA_WAP.lm.11m = with(IOWA_WAP[IOWA_WAP$NP11 != 0,], lm(log(N_Conc) ~ log(N_Price) + log(NP1) + log(NP2) + log(NP3) + log(NP4) +
+                                                        log(NP5) + log(NP6) + log(NP7) + log(NP8) +log(NP9) + log(NP10) + 
+                                                        log(NP11) + log(Flow) + 
+                                                        log(CSratio) + log(CSR1) + log(CSR2) + log(CSR3) + log(CSR4) + log(CSR5) +
+                                                        log(CSR6) + log(CSR7) + log(CSR8) + log(CSR9) + 
+                                                        log(CSR10) + log(CSR11) + log(NP_3mAvg)+ as.factor(Month)))
+summary(IOWA_WAP.lm.11m)
+
+
+IOWA_WAP.lm.12m = with(IOWA_WAP[IOWA_WAP$NP12 != 0,], lm(log(N_Conc) ~ log(N_Price) + log(NP1) + log(NP2) + log(NP3) + log(NP4) +
+                                                        log(NP5) + log(NP6) + log(NP7) + log(NP8) +log(NP9) + log(NP10) + 
+                                                        log(NP11) + log(NP12) + log(Flow) + 
+                                                        log(CSratio) + log(CSR1) + log(CSR2) + log(CSR3) + log(CSR4) + log(CSR5) +
+                                                        log(CSR6) + log(CSR7) + log(CSR8) + log(CSR9) + 
+                                                        log(CSR10) + log(CSR11) + log(CSR12) + log(NP_3mAvg)+ as.factor(Month)))
+summary(IOWA_WAP.lm.12m)
