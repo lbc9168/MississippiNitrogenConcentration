@@ -179,3 +179,95 @@ IOWA_WAP.lm.12m = with(IOWA_WAP[IOWA_WAP$NP12 != 0,], lm(log(N_Conc) ~ log(N_Pri
                                                         log(CSR6) + log(CSR7) + log(CSR8) + log(CSR9) + 
                                                         log(CSR10) + log(CSR11) + log(CSR12) + log(NP_3mAvg)+ as.factor(Month)))
 summary(IOWA_WAP.lm.12m)
+
+
+
+## MIZZ_HE
+
+MIZZ_HE = read.csv("MIZZ_HE.csv")
+
+MIZZ_HE.lm = with(MIZZ_HE, lm(log(N_Conc) ~ log(N_Price) + log(Flow) + log(CSratio) + log(NP_3mAvg)+ as.factor(Month)))
+summary(MIZZ_HE.lm)
+
+
+MIZZ_HE.lm.1m = with(MIZZ_HE, lm(log(N_Conc) ~ log(N_Price) + log(NP1) + log(Flow) + 
+                                     log(CSratio) + log(CSR1) + log(NP_3mAvg)+ as.factor(Month)))
+summary(MIZZ_HE.lm.1m)
+
+
+MIZZ_HE.lm.2m = with(MIZZ_HE, lm(log(N_Conc) ~ log(N_Price) + log(NP1) + log(NP2) + log(Flow) + 
+                                     log(CSratio) + log(CSR1) + log(CSR2) + log(NP_3mAvg)+ as.factor(Month)))
+summary(MIZZ_HE.lm.2m)
+
+
+MIZZ_HE.lm.3m = with(MIZZ_HE[MIZZ_HE$NP3 != 0,], lm(log(N_Conc) ~ log(N_Price) + log(NP1) + log(NP2) + log(NP3) + log(Flow) + 
+                                                         log(CSratio) + log(CSR1) + log(CSR2) + log(CSR3) + log(NP_3mAvg)+ as.factor(Month)))
+summary(MIZZ_HE.lm.3m)
+
+
+MIZZ_HE.lm.4m = with(MIZZ_HE[MIZZ_HE$NP4 != 0,], lm(log(N_Conc) ~ log(N_Price) + log(NP1) + log(NP2) + log(NP3) + log(NP4) +
+                                                         log(Flow) + 
+                                                         log(CSratio) + log(CSR1) + log(CSR2) + log(CSR3) + log(CSR4) +
+                                                         log(NP_3mAvg)+ as.factor(Month)))
+summary(MIZZ_HE.lm.4m)
+
+
+MIZZ_HE.lm.5m = with(MIZZ_HE[MIZZ_HE$NP5 != 0,], lm(log(N_Conc) ~ log(N_Price) + log(NP1) + log(NP2) + log(NP3) + log(NP4) +
+                                                         log(NP5) + log(Flow) + 
+                                                         log(CSratio) + log(CSR1) + log(CSR2) + log(CSR3) + log(CSR4) + log(CSR5) +
+                                                         log(NP_3mAvg)+ as.factor(Month)))
+summary(MIZZ_HE.lm.5m)
+
+
+MIZZ_HE.lm.6m = with(MIZZ_HE[MIZZ_HE$NP6 != 0,], lm(log(N_Conc) ~ log(N_Price) + log(NP1) + log(NP2) + log(NP3) + log(NP4) +
+                                                         log(NP5) + log(NP6) + log(Flow) + 
+                                                         log(CSratio) + log(CSR1) + log(CSR2) + log(CSR3) + log(CSR4) + log(CSR5) +
+                                                         log(CSR6) + log(NP_3mAvg)+ as.factor(Month)))
+summary(MIZZ_HE.lm.6m)
+
+
+MIZZ_HE.lm.7m = with(MIZZ_HE[MIZZ_HE$NP7 != 0,], lm(log(N_Conc) ~ log(N_Price) + log(NP1) + log(NP2) + log(NP3) + log(NP4) +
+                                                         log(NP5) + log(NP6) + log(NP7) + log(Flow) + 
+                                                         log(CSratio) + log(CSR1) + log(CSR2) + log(CSR3) + log(CSR4) + log(CSR5) +
+                                                         log(CSR6) + log(CSR7) + log(NP_3mAvg)+ as.factor(Month)))
+summary(MIZZ_HE.lm.7m)
+
+
+MIZZ_HE.lm.8m = with(MIZZ_HE[MIZZ_HE$NP8 != 0,], lm(log(N_Conc) ~ log(N_Price) + log(NP1) + log(NP2) + log(NP3) + log(NP4) +
+                                                         log(NP5) + log(NP6) + log(NP7) + log(NP8) + log(Flow) + 
+                                                         log(CSratio) + log(CSR1) + log(CSR2) + log(CSR3) + log(CSR4) + log(CSR5) +
+                                                         log(CSR6) + log(CSR7) + log(CSR8) + log(NP_3mAvg)+ as.factor(Month)))
+summary(MIZZ_HE.lm.8m)
+
+
+MIZZ_HE.lm.9m = with(MIZZ_HE[MIZZ_HE$NP9 != 0,], lm(log(N_Conc) ~ log(N_Price) + log(NP1) + log(NP2) + log(NP3) + log(NP4) +
+                                                         log(NP5) + log(NP6) + log(NP7) + log(NP8) +log(NP9) + log(Flow) + 
+                                                         log(CSratio) + log(CSR1) + log(CSR2) + log(CSR3) + log(CSR4) + log(CSR5) +
+                                                         log(CSR6) + log(CSR7) + log(CSR8) + log(CSR9) + log(NP_3mAvg)+ as.factor(Month)))
+summary(MIZZ_HE.lm.9m)
+
+
+MIZZ_HE.lm.10m = with(MIZZ_HE[MIZZ_HE$NP10 != 0,], lm(log(N_Conc) ~ log(N_Price) + log(NP1) + log(NP2) + log(NP3) + log(NP4) +
+                                                           log(NP5) + log(NP6) + log(NP7) + log(NP8) +log(NP9) + log(NP10) + log(Flow) + 
+                                                           log(CSratio) + log(CSR1) + log(CSR2) + log(CSR3) + log(CSR4) + log(CSR5) +
+                                                           log(CSR6) + log(CSR7) + log(CSR8) + log(CSR9) + 
+                                                           log(CSR10) + log(NP_3mAvg)+ as.factor(Month)))
+summary(MIZZ_HE.lm.10m)
+
+
+MIZZ_HE.lm.11m = with(MIZZ_HE[MIZZ_HE$NP11 != 0,], lm(log(N_Conc) ~ log(N_Price) + log(NP1) + log(NP2) + log(NP3) + log(NP4) +
+                                                           log(NP5) + log(NP6) + log(NP7) + log(NP8) +log(NP9) + log(NP10) + 
+                                                           log(NP11) + log(Flow) + 
+                                                           log(CSratio) + log(CSR1) + log(CSR2) + log(CSR3) + log(CSR4) + log(CSR5) +
+                                                           log(CSR6) + log(CSR7) + log(CSR8) + log(CSR9) + 
+                                                           log(CSR10) + log(CSR11) + log(NP_3mAvg)+ as.factor(Month)))
+summary(MIZZ_HE.lm.11m)
+
+
+MIZZ_HE.lm.12m = with(MIZZ_HE[MIZZ_HE$NP12 != 0,], lm(log(N_Conc) ~ log(N_Price) + log(NP1) + log(NP2) + log(NP3) + log(NP4) +
+                                                           log(NP5) + log(NP6) + log(NP7) + log(NP8) +log(NP9) + log(NP10) + 
+                                                           log(NP11) + log(NP12) + log(Flow) + 
+                                                           log(CSratio) + log(CSR1) + log(CSR2) + log(CSR3) + log(CSR4) + log(CSR5) +
+                                                           log(CSR6) + log(CSR7) + log(CSR8) + log(CSR9) + 
+                                                           log(CSR10) + log(CSR11) + log(CSR12) + log(NP_3mAvg)+ as.factor(Month)))
+summary(MIZZ_HE.lm.12m)
