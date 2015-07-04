@@ -1,3 +1,5 @@
+setwd("C:/Users/Bingcai/OSU/AED Research/Mississipi/2015 Summer_All sites/All_data/Time adjusted added")
+
 ## ILLI_VC
 
 ILLI_VC = read.csv("ILLI_VC.csv")
