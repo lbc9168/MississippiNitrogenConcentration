@@ -19,3 +19,4 @@ abline(h = 0.5)
 abline(h= -0.5)
 
 anova(MIZZ_HE.lm.0to2,MIZZ_HE.lm.2.0to2)
+anova(MSSP_GR.lm.0to2,MSSP_GR.lm.2.0to2)
