@@ -169,14 +169,8 @@ MIZZ_HE = read.csv("MIZZ_HE.csv")
 
 Q_Qbar2sq = with(MIZZ_HE[MIZZ_HE$NPA02 != 0,], log(Q_Qbar2)^2)
 T_Tbar2sq = with(MIZZ_HE[MIZZ_HE$NPA02 != 0,], T_Tbar2^2)
-<<<<<<< HEAD
-lnNPA24sq = with(MIZZ_HE[MIZZ_HE$NPA02 != 0,], log(NPA02)^2)
-MIZZ_HE.lm.0to2 = with(MIZZ_HE[MIZZ_HE$NPA02 != 0,],lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NPA02)+log(CSRA02)+lnNPA24sq))
-MIZZ_HE.lm.2.0to2 = with(MIZZ_HE[MIZZ_HE$NPA02 != 0,],lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+T_Tbar2sq+sin(2*pi*T)+cos(2*pi*T)+log(NPA02)+log(CSRA02)+lnNPA24sq))
-=======
 MIZZ_HE.lm.0to2 = with(MIZZ_HE[MIZZ_HE$NPA02 != 0,],lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NPA02)+log(CSRA02)))
 MIZZ_HE.lm.2.0to2 = with(MIZZ_HE[MIZZ_HE$NPA02 != 0,],lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+T_Tbar2sq+sin(2*pi*T)+cos(2*pi*T)+log(NPA02)+log(CSRA02)))
->>>>>>> parent of e109f3e... Revert "WRTDS weighted average"
 summary(MIZZ_HE.lm.0to2)
 summary(MIZZ_HE.lm.2.0to2)
 
@@ -271,19 +265,12 @@ MSSP_CL.lm.2.1to3 = with(MSSP_CL[MSSP_CL$NPA13 != 0,],lm(log(Conc)~log(Q_Qbar2)+
 summary(MSSP_CL.lm.1to3)
 summary(MSSP_CL.lm.2.1to3)
 
-<<<<<<< HEAD
+
 ## test square adjustment
-Q_Qbar2sq = with(MSSP_CL[MSSP_CL$NPA24 != 0,], log(Q_Qbar2)^2)
-T_Tbar2sq = with(MSSP_CL[MSSP_CL$NPA24 != 0,], T_Tbar2^2)
-lnNPA24sq = with(MSSP_CL[MSSP_CL$NPA24 != 0,], log(NPA24)^2)
-MSSP_CL.lm.2to4 = with(MSSP_CL[MSSP_CL$NPA24 != 0,],lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NPA24)+log(CSRA24)+lnNPA24sq))
-MSSP_CL.lm.2.2to4 = with(MSSP_CL[MSSP_CL$NPA24 != 0,],lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+T_Tbar2sq+sin(2*pi*T)+cos(2*pi*T)+log(NPA24)+log(CSRA24)+lnNPA24sq))
-=======
 Q_Qbar2sq = with(MSSP_CL[MSSP_CL$NPA24 != 0,], log(Q_Qbar2)^2)
 T_Tbar2sq = with(MSSP_CL[MSSP_CL$NPA24 != 0,], T_Tbar2^2)
 MSSP_CL.lm.2to4 = with(MSSP_CL[MSSP_CL$NPA24 != 0,],lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NPA24)+log(CSRA24)))
 MSSP_CL.lm.2.2to4 = with(MSSP_CL[MSSP_CL$NPA24 != 0,],lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+T_Tbar2sq+sin(2*pi*T)+cos(2*pi*T)+log(NPA24)+log(CSRA24)))
->>>>>>> parent of e109f3e... Revert "WRTDS weighted average"
 summary(MSSP_CL.lm.2to4)
 summary(MSSP_CL.lm.2.2to4)
 
