@@ -8,6 +8,10 @@ ILLI_VC.lm.2 = with(ILLI_VC,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+T_Tbar2s
 summary(ILLI_VC.lm)
 summary(ILLI_VC.lm.2)
 
+## test original model
+ILLI_VC.lm.3 = with(ILLI_VC,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+T_Tbar2sq+sin(2*pi*T)+cos(2*pi*T)))
+summary(ILLI_VC.lm.3)
+
 IOWA_WAP = read.csv("IOWA_WAP.csv")
 lnQ_Qbar2sq = with(IOWA_WAP, log(Q_Qbar2)^2)
 T_Tbar2sq = with(IOWA_WAP, T_Tbar2^2)
