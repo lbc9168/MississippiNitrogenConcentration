@@ -187,7 +187,7 @@ with(Pdct_MSSP_CL, matlines(T,C,type="l"))
 
 MSSP_CL = with(Pdct_MSSP_CL, data.frame(T,C,C03))
 CL = with(MSSP_CL,lm(C~T))
-HE.2 = with(MSSP_CL,lm(C03~T))
+CL.2 = with(MSSP_CL,lm(C03~T))
 abline(CL)
 abline(CL.2,col = "red")
 
