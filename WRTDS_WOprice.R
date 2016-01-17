@@ -137,6 +137,7 @@ LNCWOP = with(Pdct_ILLI_VC, as.matrix(1.569 + 0.06*log(Q/Qwave) - 0.13*Q_Qbar2 -
 C03 = exp(LNCWOP)
 
 #graphic part begins
+
 with(Pdct_ILLI_VC, matplot(T,C03,type = "l",col = 2,ylab = "N Concentration",xlab = "Decimal Time", main = "ILLI_VC"))
 with(Pdct_ILLI_VC, matlines(T,C,type="l"))
 
