@@ -8,6 +8,11 @@ ILLI_VC.lm.2 = with(ILLI_VC,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+T_Tbar2s
 summary(ILLI_VC.lm)
 summary(ILLI_VC.lm.2)
 
+Var_T = with(ILLI_VC, var(T_Tbar2, na.rm = TRUE))
+Var_Tsq = var(T_Tbar2sq, na.rm = TRUE)
+Theta1_woP = summary(ILLI_VC.lm2)$coefficients["T_Tbar2","Estimate"]
+Theta2_woP = summary(ILLI_VC.lm2)$coefficients["T_Tbar2sq","Estimate"]
+
 ## test original model
 ILLI_VC.lm.3 = with(ILLI_VC,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+T_Tbar2sq+sin(2*pi*T)+cos(2*pi*T)))
 summary(ILLI_VC.lm.3)
@@ -20,6 +25,9 @@ IOWA_WAP.lm = with(IOWA_WAP,lm(log(Conc)~log(Q_Qbar2)+lnQ_Qbar2sq+T_Tbar2+sin(2*
 IOWA_WAP.lm.2 = with(IOWA_WAP,lm(log(Conc)~log(Q_Qbar2)+lnQ_Qbar2sq+T_Tbar2+T_Tbar2sq+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
 summary(IOWA_WAP.lm)
 summary(IOWA_WAP.lm.2)
+
+Var_T = with(IOWA_WAP, var(T_Tbar2, na.rm = TRUE))
+
 
 MIZZ_HE = read.csv("MIZZ_HE.csv")
 lnQ_Qbar2sq = with(MIZZ_HE, log(Q_Qbar2)^2)

@@ -1,118 +1,457 @@
 setwd("C:/Users/Bingcai/OSU/AED Research/Mississipi/2015 Summer_All sites/WRTDS model")
 
+#ILLI_VC
+
 ILLI_VC = read.csv("ILLI_VC.csv")
 Q_Qbar2sq = with(ILLI_VC, log(Q_Qbar2)^2)
 T_Tbar2sq = with(ILLI_VC, T_Tbar2^2)
-ILLI_VC.lm = with(ILLI_VC,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
-ILLI_VC.lm.2 = with(ILLI_VC,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+T_Tbar2sq+sin(2*pi*T)+cos(2*pi*T)))
-ILLI_VC.lm.3 = with(ILLI_VC,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)))
-ILLI_VC.lm.4 = with(ILLI_VC,lm(log(Conc)~log(Q_Qbar2)+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)))
-ILLI_VC.lm.5 = with(ILLI_VC,lm(log(Conc)~log(Q_Qbar2)+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
+ILLI_VC.lm   = with(ILLI_VC,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
+ILLI_VC.lm.2 = with(ILLI_VC,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)))
+
+ILLI_VC.lm.3 = with(ILLI_VC,lm(log(Conc)~log(Q_Qbar2)+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)))
+ILLI_VC.lm.4 = with(ILLI_VC,lm(log(Conc)~log(Q_Qbar2)+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
+
+ILLI_VC.lm.5 = with(ILLI_VC,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+T_Tbar2sq+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
+ILLI_VC.lm.6 = with(ILLI_VC,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+T_Tbar2sq+sin(2*pi*T)+cos(2*pi*T)))
 
 summary(ILLI_VC.lm)
 summary(ILLI_VC.lm.2)
 summary(ILLI_VC.lm.3)
 summary(ILLI_VC.lm.4)
 summary(ILLI_VC.lm.5)
+summary(ILLI_VC.lm.6)
 
+Var_T_woP = (summary(ILLI_VC.lm.6)$coefficients["T_Tbar2","Std. Error"])^2
+Var_Tsq_woP = (summary(ILLI_VC.lm.6)$coefficients["T_Tbar2sq","Std. Error"])^2
+vcov(ILLI_VC.lm.6)
+Cov_both_woP = 1.817504e-09
+
+Beta1_woP = summary(ILLI_VC.lm.6)$coefficients["T_Tbar2","Estimate"]
+Beta2_woP = summary(ILLI_VC.lm.6)$coefficients["T_Tbar2sq","Estimate"]
+
+Theta_woP = Beta1_woP/(Beta1_woP+Beta2_woP)
+Theta1_woP = Beta2_woP/(Beta1_woP+Beta2_woP)^2
+Theta2_woP = Beta1_woP/(Beta1_woP+Beta2_woP)^2
+
+Var_Theta_woP = Theta1_woP^2*Var_T_woP + Theta2_woP^2*Var_Tsq_woP + 2*Theta1_woP*Theta2_woP*Cov_both
+SE_woP = sqrt(Var_Theta_woP)
+SE_woP
+
+
+Var_T_wP = (summary(ILLI_VC.lm.5)$coefficients["T_Tbar2","Std. Error"])^2
+Var_Tsq_wP = (summary(ILLI_VC.lm.5)$coefficients["T_Tbar2sq","Std. Error"])^2
+vcov(ILLI_VC.lm.5)
+Cov_both_wP = 1.852496e-07
+
+Beta1_wP = summary(ILLI_VC.lm.5)$coefficients["T_Tbar2","Estimate"]
+Beta2_wP = summary(ILLI_VC.lm.5)$coefficients["T_Tbar2sq","Estimate"]
+
+Theta_wP = Beta1_wP/(Beta1_woP+Beta2_wP)
+Theta1_wP = Beta2_wP/(Beta1_woP+Beta2_wP)^2
+Theta2_wP = Beta1_wP/(Beta1_woP+Beta2_wP)^2
+
+Var_Theta_wP = Theta1_wP^2*Var_T_wP + Theta2_wP^2*Var_Tsq_wP + 2*Theta1_wP*Theta2_wP*Cov_both_wP
+SE_wP = sqrt(Var_Theta_wP)
+SE_wP
+
+
+##IOWA_WAP
 
 IOWA_WAP = read.csv("IOWA_WAP.csv")
-lnQ_Qbar2sq = with(IOWA_WAP, log(Q_Qbar2)^2)
+Q_Qbar2sq = with(IOWA_WAP, log(Q_Qbar2)^2)
 T_Tbar2sq = with(IOWA_WAP, T_Tbar2^2)
-IOWA_WAP.lm = with(IOWA_WAP,lm(log(Conc)~log(Q_Qbar2)+lnQ_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
-IOWA_WAP.lm.2 = with(IOWA_WAP,lm(log(Conc)~log(Q_Qbar2)+lnQ_Qbar2sq+T_Tbar2+T_Tbar2sq+sin(2*pi*T)+cos(2*pi*T)))
-IOWA_WAP.lm.3 = with(IOWA_WAP,lm(log(Conc)~log(Q_Qbar2)+lnQ_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)))
-IOWA_WAP.lm.4 = with(IOWA_WAP,lm(log(Conc)~log(Q_Qbar2)+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)))
-IOWA_WAP.lm.5 = with(IOWA_WAP,lm(log(Conc)~log(Q_Qbar2)+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
+IOWA_WAP.lm   = with(IOWA_WAP,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
+IOWA_WAP.lm.2 = with(IOWA_WAP,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)))
+
+IOWA_WAP.lm.3 = with(IOWA_WAP,lm(log(Conc)~log(Q_Qbar2)+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)))
+IOWA_WAP.lm.4 = with(IOWA_WAP,lm(log(Conc)~log(Q_Qbar2)+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
+
+IOWA_WAP.lm.5 = with(IOWA_WAP,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+T_Tbar2sq+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
+IOWA_WAP.lm.6 = with(IOWA_WAP,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+T_Tbar2sq+sin(2*pi*T)+cos(2*pi*T)))
+
 summary(IOWA_WAP.lm)
 summary(IOWA_WAP.lm.2)
 summary(IOWA_WAP.lm.3)
 summary(IOWA_WAP.lm.4)
 summary(IOWA_WAP.lm.5)
+summary(IOWA_WAP.lm.6)
+
+Var_T_woP = (summary(IOWA_WAP.lm.6)$coefficients["T_Tbar2","Std. Error"])^2
+Var_Tsq_woP = (summary(IOWA_WAP.lm.6)$coefficients["T_Tbar2sq","Std. Error"])^2
+vcov(IOWA_WAP.lm.6)
+Cov_both_woP =  3.511944e-07
+
+Beta1_woP = summary(IOWA_WAP.lm.6)$coefficients["T_Tbar2","Estimate"]
+Beta2_woP = summary(IOWA_WAP.lm.6)$coefficients["T_Tbar2sq","Estimate"]
+
+Theta_woP = Beta1_woP/(Beta1_woP+Beta2_woP)
+Theta1_woP = Beta2_woP/(Beta1_woP+Beta2_woP)^2
+Theta2_woP = Beta1_woP/(Beta1_woP+Beta2_woP)^2
+
+Var_Theta_woP = Theta1_woP^2*Var_T_woP + Theta2_woP^2*Var_Tsq_woP + 2*Theta1_woP*Theta2_woP*Cov_both
+SE_woP = sqrt(Var_Theta_woP)
+SE_woP
+
+
+Var_T_wP = (summary(IOWA_WAP.lm.5)$coefficients["T_Tbar2","Std. Error"])^2
+Var_Tsq_wP = (summary(IOWA_WAP.lm.5)$coefficients["T_Tbar2sq","Std. Error"])^2
+vcov(IOWA_WAP.lm.5)
+Cov_both_wP = 1.181876e-06
+
+Beta1_wP = summary(IOWA_WAP.lm.5)$coefficients["T_Tbar2","Estimate"]
+Beta2_wP = summary(IOWA_WAP.lm.5)$coefficients["T_Tbar2sq","Estimate"]
+
+Theta_wP = Beta1_wP/(Beta1_woP+Beta2_wP)
+Theta1_wP = Beta2_wP/(Beta1_woP+Beta2_wP)^2
+Theta2_wP = Beta1_wP/(Beta1_woP+Beta2_wP)^2
+
+Var_Theta_wP = Theta1_wP^2*Var_T_wP + Theta2_wP^2*Var_Tsq_wP + 2*Theta1_wP*Theta2_wP*Cov_both_wP
+SE_wP = sqrt(Var_Theta_wP)
+SE_wP
+
+
+
+## MIZZ_HE
 
 MIZZ_HE = read.csv("MIZZ_HE.csv")
-lnQ_Qbar2sq = with(MIZZ_HE, log(Q_Qbar2)^2)
+Q_Qbar2sq = with(MIZZ_HE, log(Q_Qbar2)^2)
 T_Tbar2sq = with(MIZZ_HE, T_Tbar2^2)
-MIZZ_HE.lm = with(MIZZ_HE,lm(log(Conc)~log(Q_Qbar2)+lnQ_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
-MIZZ_HE.lm.2 = with(MIZZ_HE,lm(log(Conc)~log(Q_Qbar2)+lnQ_Qbar2sq+T_Tbar2+T_Tbar2sq+sin(2*pi*T)+cos(2*pi*T)))
-MIZZ_HE.lm.3 = with(MIZZ_HE,lm(log(Conc)~log(Q_Qbar2)+lnQ_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)))
-MIZZ_HE.lm.4 = with(MIZZ_HE,lm(log(Conc)~log(Q_Qbar2)+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)))
-MIZZ_HE.lm.5 = with(MIZZ_HE,lm(log(Conc)~log(Q_Qbar2)+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
+MIZZ_HE.lm   = with(MIZZ_HE,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
+MIZZ_HE.lm.2 = with(MIZZ_HE,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)))
+
+MIZZ_HE.lm.3 = with(MIZZ_HE,lm(log(Conc)~log(Q_Qbar2)+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)))
+MIZZ_HE.lm.4 = with(MIZZ_HE,lm(log(Conc)~log(Q_Qbar2)+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
+
+MIZZ_HE.lm.5 = with(MIZZ_HE,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+T_Tbar2sq+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
+MIZZ_HE.lm.6 = with(MIZZ_HE,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+T_Tbar2sq+sin(2*pi*T)+cos(2*pi*T)))
+
 summary(MIZZ_HE.lm)
 summary(MIZZ_HE.lm.2)
 summary(MIZZ_HE.lm.3)
 summary(MIZZ_HE.lm.4)
 summary(MIZZ_HE.lm.5)
+summary(MIZZ_HE.lm.6)
+
+Var_T_woP = (summary(MIZZ_HE.lm.6)$coefficients["T_Tbar2","Std. Error"])^2
+Var_Tsq_woP = (summary(MIZZ_HE.lm.6)$coefficients["T_Tbar2sq","Std. Error"])^2
+vcov(MIZZ_HE.lm.6)
+Cov_both_woP = -7.408782e-09
+
+Beta1_woP = summary(MIZZ_HE.lm.6)$coefficients["T_Tbar2","Estimate"]
+Beta2_woP = summary(MIZZ_HE.lm.6)$coefficients["T_Tbar2sq","Estimate"]
+
+Theta_woP = Beta1_woP/(Beta1_woP+Beta2_woP)
+Theta1_woP = Beta2_woP/(Beta1_woP+Beta2_woP)^2
+Theta2_woP = Beta1_woP/(Beta1_woP+Beta2_woP)^2
+
+Var_Theta_woP = Theta1_woP^2*Var_T_woP + Theta2_woP^2*Var_Tsq_woP + 2*Theta1_woP*Theta2_woP*Cov_both
+SE_woP = sqrt(Var_Theta_woP)
+SE_woP
+
+
+Var_T_wP = (summary(MIZZ_HE.lm.5)$coefficients["T_Tbar2","Std. Error"])^2
+Var_Tsq_wP = (summary(MIZZ_HE.lm.5)$coefficients["T_Tbar2sq","Std. Error"])^2
+vcov(MIZZ_HE.lm.5)
+Cov_both_wP = 4.726005e-07
+
+Beta1_wP = summary(MIZZ_HE.lm.5)$coefficients["T_Tbar2","Estimate"]
+Beta2_wP = summary(MIZZ_HE.lm.5)$coefficients["T_Tbar2sq","Estimate"]
+
+Theta_wP = Beta1_wP/(Beta1_woP+Beta2_wP)
+Theta1_wP = Beta2_wP/(Beta1_woP+Beta2_wP)^2
+Theta2_wP = Beta1_wP/(Beta1_woP+Beta2_wP)^2
+
+Var_Theta_wP = Theta1_wP^2*Var_T_wP + Theta2_wP^2*Var_Tsq_wP + 2*Theta1_wP*Theta2_wP*Cov_both_wP
+SE_wP = sqrt(Var_Theta_wP)
+SE_wP
+
+
+
+
+## MSSP_CL
 
 MSSP_CL = read.csv("MSSP_CL.csv")
-lnQ_Qbar2sq = with(MSSP_CL, log(Q_Qbar2)^2)
+Q_Qbar2sq = with(MSSP_CL, log(Q_Qbar2)^2)
 T_Tbar2sq = with(MSSP_CL, T_Tbar2^2)
-MSSP_CL.lm = with(MSSP_CL,lm(log(Conc)~log(Q_Qbar2)+lnQ_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
-MSSP_CL.lm.2 = with(MSSP_CL,lm(log(Conc)~log(Q_Qbar2)+lnQ_Qbar2sq+T_Tbar2+T_Tbar2sq+sin(2*pi*T)+cos(2*pi*T)))
-MSSP_CL.lm.3 = with(MSSP_CL,lm(log(Conc)~log(Q_Qbar2)+lnQ_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)))
-MSSP_CL.lm.4 = with(MSSP_CL,lm(log(Conc)~log(Q_Qbar2)+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)))
-MSSP_CL.lm.5 = with(MSSP_CL,lm(log(Conc)~log(Q_Qbar2)+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
+MSSP_CL.lm   = with(MSSP_CL,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
+MSSP_CL.lm.2 = with(MSSP_CL,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)))
+
+MSSP_CL.lm.3 = with(MSSP_CL,lm(log(Conc)~log(Q_Qbar2)+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)))
+MSSP_CL.lm.4 = with(MSSP_CL,lm(log(Conc)~log(Q_Qbar2)+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
+
+MSSP_CL.lm.5 = with(MSSP_CL,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+T_Tbar2sq+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
+MSSP_CL.lm.6 = with(MSSP_CL,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+T_Tbar2sq+sin(2*pi*T)+cos(2*pi*T)))
+
 summary(MSSP_CL.lm)
 summary(MSSP_CL.lm.2)
 summary(MSSP_CL.lm.3)
 summary(MSSP_CL.lm.4)
 summary(MSSP_CL.lm.5)
+summary(MSSP_CL.lm.6)
+
+Var_T_woP = (summary(MSSP_CL.lm.6)$coefficients["T_Tbar2","Std. Error"])^2
+Var_Tsq_woP = (summary(MSSP_CL.lm.6)$coefficients["T_Tbar2sq","Std. Error"])^2
+vcov(MSSP_CL.lm.6)
+Cov_both_woP = 2.837555e-09
+
+Beta1_woP = summary(MSSP_CL.lm.6)$coefficients["T_Tbar2","Estimate"]
+Beta2_woP = summary(MSSP_CL.lm.6)$coefficients["T_Tbar2sq","Estimate"]
+
+Theta_woP = Beta1_woP/(Beta1_woP+Beta2_woP)
+Theta1_woP = Beta2_woP/(Beta1_woP+Beta2_woP)^2
+Theta2_woP = Beta1_woP/(Beta1_woP+Beta2_woP)^2
+
+Var_Theta_woP = Theta1_woP^2*Var_T_woP + Theta2_woP^2*Var_Tsq_woP + 2*Theta1_woP*Theta2_woP*Cov_both
+SE_woP = sqrt(Var_Theta_woP)
+SE_woP
+
+
+Var_T_wP = (summary(MSSP_CL.lm.5)$coefficients["T_Tbar2","Std. Error"])^2
+Var_Tsq_wP = (summary(MSSP_CL.lm.5)$coefficients["T_Tbar2sq","Std. Error"])^2
+vcov(MSSP_CL.lm.5)
+Cov_both_wP = 2.052156e-07
+
+Beta1_wP = summary(MSSP_CL.lm.5)$coefficients["T_Tbar2","Estimate"]
+Beta2_wP = summary(MSSP_CL.lm.5)$coefficients["T_Tbar2sq","Estimate"]
+
+Theta_wP = Beta1_wP/(Beta1_woP+Beta2_wP)
+Theta1_wP = Beta2_wP/(Beta1_woP+Beta2_wP)^2
+Theta2_wP = Beta1_wP/(Beta1_woP+Beta2_wP)^2
+
+Var_Theta_wP = Theta1_wP^2*Var_T_wP + Theta2_wP^2*Var_Tsq_wP + 2*Theta1_wP*Theta2_wP*Cov_both_wP
+SE_wP = sqrt(Var_Theta_wP)
+SE_wP
+
+
+
+## MSSP_GR
 
 MSSP_GR = read.csv("MSSP_GR.csv")
-lnQ_Qbar2sq = with(MSSP_GR, log(Q_Qbar2)^2)
+Q_Qbar2sq = with(MSSP_GR, log(Q_Qbar2)^2)
 T_Tbar2sq = with(MSSP_GR, T_Tbar2^2)
-MSSP_GR.lm = with(MSSP_GR,lm(log(Conc)~log(Q_Qbar2)+lnQ_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
-MSSP_GR.lm.2 = with(MSSP_GR,lm(log(Conc)~log(Q_Qbar2)+lnQ_Qbar2sq+T_Tbar2+T_Tbar2sq+sin(2*pi*T)+cos(2*pi*T)))
-MSSP_GR.lm.3 = with(MSSP_GR,lm(log(Conc)~log(Q_Qbar2)+lnQ_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)))
-MSSP_GR.lm.4 = with(MSSP_GR,lm(log(Conc)~log(Q_Qbar2)+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)))
-MSSP_GR.lm.5 = with(MSSP_GR,lm(log(Conc)~log(Q_Qbar2)+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
+MSSP_GR.lm   = with(MSSP_GR,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
+MSSP_GR.lm.2 = with(MSSP_GR,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)))
+
+MSSP_GR.lm.3 = with(MSSP_GR,lm(log(Conc)~log(Q_Qbar2)+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)))
+MSSP_GR.lm.4 = with(MSSP_GR,lm(log(Conc)~log(Q_Qbar2)+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
+
+MSSP_GR.lm.5 = with(MSSP_GR,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+T_Tbar2sq+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
+MSSP_GR.lm.6 = with(MSSP_GR,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+T_Tbar2sq+sin(2*pi*T)+cos(2*pi*T)))
+
 summary(MSSP_GR.lm)
 summary(MSSP_GR.lm.2)
 summary(MSSP_GR.lm.3)
 summary(MSSP_GR.lm.4)
 summary(MSSP_GR.lm.5)
+summary(MSSP_GR.lm.6)
+
+Var_T_woP = (summary(MSSP_GR.lm.6)$coefficients["T_Tbar2","Std. Error"])^2
+Var_Tsq_woP = (summary(MSSP_GR.lm.6)$coefficients["T_Tbar2sq","Std. Error"])^2
+vcov(MSSP_GR.lm.6)
+Cov_both_woP =  5.038804e-08
+
+Beta1_woP = summary(MSSP_GR.lm.6)$coefficients["T_Tbar2","Estimate"]
+Beta2_woP = summary(MSSP_GR.lm.6)$coefficients["T_Tbar2sq","Estimate"]
+
+Theta_woP = Beta1_woP/(Beta1_woP+Beta2_woP)
+Theta1_woP = Beta2_woP/(Beta1_woP+Beta2_woP)^2
+Theta2_woP = Beta1_woP/(Beta1_woP+Beta2_woP)^2
+
+Var_Theta_woP = Theta1_woP^2*Var_T_woP + Theta2_woP^2*Var_Tsq_woP + 2*Theta1_woP*Theta2_woP*Cov_both
+SE_woP = sqrt(Var_Theta_woP)
+SE_woP
+
+
+Var_T_wP = (summary(MSSP_GR.lm.5)$coefficients["T_Tbar2","Std. Error"])^2
+Var_Tsq_wP = (summary(MSSP_GR.lm.5)$coefficients["T_Tbar2sq","Std. Error"])^2
+vcov(MSSP_GR.lm.5)
+Cov_both_wP = 3.354946e-07
+
+Beta1_wP = summary(MSSP_GR.lm.5)$coefficients["T_Tbar2","Estimate"]
+Beta2_wP = summary(MSSP_GR.lm.5)$coefficients["T_Tbar2sq","Estimate"]
+
+Theta_wP = Beta1_wP/(Beta1_woP+Beta2_wP)
+Theta1_wP = Beta2_wP/(Beta1_woP+Beta2_wP)^2
+Theta2_wP = Beta1_wP/(Beta1_woP+Beta2_wP)^2
+
+Var_Theta_wP = Theta1_wP^2*Var_T_wP + Theta2_wP^2*Var_Tsq_wP + 2*Theta1_wP*Theta2_wP*Cov_both_wP
+SE_wP = sqrt(Var_Theta_wP)
+SE_wP
+
+
+
+
+
+## MSSP_OUT
 
 MSSP_OUT = read.csv("MSSP_OUT.csv")
-lnQ_Qbar2sq = with(MSSP_OUT, log(Q_Qbar2)^2)
+Q_Qbar2sq = with(MSSP_OUT, log(Q_Qbar2)^2)
 T_Tbar2sq = with(MSSP_OUT, T_Tbar2^2)
-MSSP_OUT.lm = with(MSSP_OUT,lm(log(Conc)~log(Q_Qbar2)+lnQ_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
-MSSP_OUT.lm.2 = with(MSSP_OUT,lm(log(Conc)~log(Q_Qbar2)+lnQ_Qbar2sq+T_Tbar2+T_Tbar2sq+sin(2*pi*T)+cos(2*pi*T)))
-MSSP_OUT.lm.3 = with(MSSP_OUT,lm(log(Conc)~log(Q_Qbar2)+lnQ_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)))
-MSSP_OUT.lm.4 = with(MSSP_OUT,lm(log(Conc)~log(Q_Qbar2)+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)))
-MSSP_OUT.lm.5 = with(MSSP_OUT,lm(log(Conc)~log(Q_Qbar2)+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
+MSSP_OUT.lm   = with(MSSP_OUT,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
+MSSP_OUT.lm.2 = with(MSSP_OUT,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)))
+
+MSSP_OUT.lm.3 = with(MSSP_OUT,lm(log(Conc)~log(Q_Qbar2)+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)))
+MSSP_OUT.lm.4 = with(MSSP_OUT,lm(log(Conc)~log(Q_Qbar2)+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
+
+MSSP_OUT.lm.5 = with(MSSP_OUT,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+T_Tbar2sq+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
+MSSP_OUT.lm.6 = with(MSSP_OUT,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+T_Tbar2sq+sin(2*pi*T)+cos(2*pi*T)))
+
 summary(MSSP_OUT.lm)
 summary(MSSP_OUT.lm.2)
 summary(MSSP_OUT.lm.3)
 summary(MSSP_OUT.lm.4)
 summary(MSSP_OUT.lm.5)
+summary(MSSP_OUT.lm.6)
+
+Var_T_woP = (summary(MSSP_OUT.lm.6)$coefficients["T_Tbar2","Std. Error"])^2
+Var_Tsq_woP = (summary(MSSP_OUT.lm.6)$coefficients["T_Tbar2sq","Std. Error"])^2
+vcov(MSSP_OUT.lm.6)
+Cov_both_woP = -4.752290e-09
+
+Beta1_woP = summary(MSSP_OUT.lm.6)$coefficients["T_Tbar2","Estimate"]
+Beta2_woP = summary(MSSP_OUT.lm.6)$coefficients["T_Tbar2sq","Estimate"]
+
+Theta_woP = Beta1_woP/(Beta1_woP+Beta2_woP)
+Theta1_woP = Beta2_woP/(Beta1_woP+Beta2_woP)^2
+Theta2_woP = Beta1_woP/(Beta1_woP+Beta2_woP)^2
+
+Var_Theta_woP = Theta1_woP^2*Var_T_woP + Theta2_woP^2*Var_Tsq_woP + 2*Theta1_woP*Theta2_woP*Cov_both
+SE_woP = sqrt(Var_Theta_woP)
+SE_woP
+
+
+Var_T_wP = (summary(MSSP_OUT.lm.5)$coefficients["T_Tbar2","Std. Error"])^2
+Var_Tsq_wP = (summary(MSSP_OUT.lm.5)$coefficients["T_Tbar2sq","Std. Error"])^2
+vcov(MSSP_OUT.lm.5)
+Cov_both_wP = 9.598074e-08
+
+Beta1_wP = summary(MSSP_OUT.lm.5)$coefficients["T_Tbar2","Estimate"]
+Beta2_wP = summary(MSSP_OUT.lm.5)$coefficients["T_Tbar2sq","Estimate"]
+
+Theta_wP = Beta1_wP/(Beta1_woP+Beta2_wP)
+Theta1_wP = Beta2_wP/(Beta1_woP+Beta2_wP)^2
+Theta2_wP = Beta1_wP/(Beta1_woP+Beta2_wP)^2
+
+Var_Theta_wP = Theta1_wP^2*Var_T_wP + Theta2_wP^2*Var_Tsq_wP + 2*Theta1_wP*Theta2_wP*Cov_both_wP
+SE_wP = sqrt(Var_Theta_wP)
+SE_wP
+
+
+## MSSP_TH
 
 MSSP_TH = read.csv("MSSP_TH.csv")
-lnQ_Qbar2sq = with(MSSP_TH, log(Q_Qbar2)^2)
+Q_Qbar2sq = with(MSSP_TH, log(Q_Qbar2)^2)
 T_Tbar2sq = with(MSSP_TH, T_Tbar2^2)
-MSSP_TH.lm = with(MSSP_TH,lm(log(Conc)~log(Q_Qbar2)+lnQ_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
-MSSP_TH.lm.2 = with(MSSP_TH,lm(log(Conc)~log(Q_Qbar2)+lnQ_Qbar2sq+T_Tbar2+T_Tbar2sq+sin(2*pi*T)+cos(2*pi*T)))
-MSSP_TH.lm.3 = with(MSSP_TH,lm(log(Conc)~log(Q_Qbar2)+lnQ_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)))
-MSSP_TH.lm.4 = with(MSSP_TH,lm(log(Conc)~log(Q_Qbar2)+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)))
-MSSP_TH.lm.5 = with(MSSP_TH,lm(log(Conc)~log(Q_Qbar2)+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
+MSSP_TH.lm   = with(MSSP_TH,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
+MSSP_TH.lm.2 = with(MSSP_TH,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)))
+
+MSSP_TH.lm.3 = with(MSSP_TH,lm(log(Conc)~log(Q_Qbar2)+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)))
+MSSP_TH.lm.4 = with(MSSP_TH,lm(log(Conc)~log(Q_Qbar2)+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
+
+MSSP_TH.lm.5 = with(MSSP_TH,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+T_Tbar2sq+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
+MSSP_TH.lm.6 = with(MSSP_TH,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+T_Tbar2sq+sin(2*pi*T)+cos(2*pi*T)))
+
 summary(MSSP_TH.lm)
 summary(MSSP_TH.lm.2)
 summary(MSSP_TH.lm.3)
 summary(MSSP_TH.lm.4)
 summary(MSSP_TH.lm.5)
+summary(MSSP_TH.lm.6)
+
+Var_T_woP = (summary(MSSP_TH.lm.6)$coefficients["T_Tbar2","Std. Error"])^2
+Var_Tsq_woP = (summary(MSSP_TH.lm.6)$coefficients["T_Tbar2sq","Std. Error"])^2
+vcov(MSSP_TH.lm.6)
+Cov_both_woP = -8.987544e-09
+
+Beta1_woP = summary(MSSP_TH.lm.6)$coefficients["T_Tbar2","Estimate"]
+Beta2_woP = summary(MSSP_TH.lm.6)$coefficients["T_Tbar2sq","Estimate"]
+
+Theta_woP = Beta1_woP/(Beta1_woP+Beta2_woP)
+Theta1_woP = Beta2_woP/(Beta1_woP+Beta2_woP)^2
+Theta2_woP = Beta1_woP/(Beta1_woP+Beta2_woP)^2
+
+Var_Theta_woP = Theta1_woP^2*Var_T_woP + Theta2_woP^2*Var_Tsq_woP + 2*Theta1_woP*Theta2_woP*Cov_both
+SE_woP = sqrt(Var_Theta_woP)
+SE_woP
+
+
+Var_T_wP = (summary(MSSP_TH.lm.5)$coefficients["T_Tbar2","Std. Error"])^2
+Var_Tsq_wP = (summary(MSSP_TH.lm.5)$coefficients["T_Tbar2sq","Std. Error"])^2
+vcov(MSSP_TH.lm.5)
+Cov_both_wP =  1.874857e-07
+
+Beta1_wP = summary(MSSP_TH.lm.5)$coefficients["T_Tbar2","Estimate"]
+Beta2_wP = summary(MSSP_TH.lm.5)$coefficients["T_Tbar2sq","Estimate"]
+
+Theta_wP = Beta1_wP/(Beta1_woP+Beta2_wP)
+Theta1_wP = Beta2_wP/(Beta1_woP+Beta2_wP)^2
+Theta2_wP = Beta1_wP/(Beta1_woP+Beta2_wP)^2
+
+Var_Theta_wP = Theta1_wP^2*Var_T_wP + Theta2_wP^2*Var_Tsq_wP + 2*Theta1_wP*Theta2_wP*Cov_both_wP
+SE_wP = sqrt(Var_Theta_wP)
+SE_wP
+
+
+
+## OHIO_GRCH
 
 OHIO_GRCH = read.csv("OHIO_GRCH.csv")
-lnQ_Qbar2sq = with(OHIO_GRCH, log(Q_Qbar2)^2)
+Q_Qbar2sq = with(OHIO_GRCH, log(Q_Qbar2)^2)
 T_Tbar2sq = with(OHIO_GRCH, T_Tbar2^2)
-OHIO_GRCH.lm = with(OHIO_GRCH,lm(log(Conc)~log(Q_Qbar2)+lnQ_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
-OHIO_GRCH.lm.2 = with(OHIO_GRCH,lm(log(Conc)~log(Q_Qbar2)+lnQ_Qbar2sq+T_Tbar2+T_Tbar2sq+sin(2*pi*T)+cos(2*pi*T)))
-OHIO_GRCH.lm.3 = with(OHIO_GRCH,lm(log(Conc)~log(Q_Qbar2)+lnQ_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)))
-OHIO_GRCH.lm.4 = with(OHIO_GRCH,lm(log(Conc)~log(Q_Qbar2)+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)))
-OHIO_GRCH.lm.5 = with(OHIO_GRCH,lm(log(Conc)~log(Q_Qbar2)+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
+OHIO_GRCH.lm   = with(OHIO_GRCH,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
+OHIO_GRCH.lm.2 = with(OHIO_GRCH,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)))
+
+OHIO_GRCH.lm.3 = with(OHIO_GRCH,lm(log(Conc)~log(Q_Qbar2)+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)))
+OHIO_GRCH.lm.4 = with(OHIO_GRCH,lm(log(Conc)~log(Q_Qbar2)+T_Tbar2+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
+
+OHIO_GRCH.lm.5 = with(OHIO_GRCH,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+T_Tbar2sq+sin(2*pi*T)+cos(2*pi*T)+log(NP)+log(CSR)))
+OHIO_GRCH.lm.6 = with(OHIO_GRCH,lm(log(Conc)~log(Q_Qbar2)+Q_Qbar2sq+T_Tbar2+T_Tbar2sq+sin(2*pi*T)+cos(2*pi*T)))
+
 summary(OHIO_GRCH.lm)
 summary(OHIO_GRCH.lm.2)
 summary(OHIO_GRCH.lm.3)
 summary(OHIO_GRCH.lm.4)
 summary(OHIO_GRCH.lm.5)
+summary(OHIO_GRCH.lm.6)
+
+Var_T_woP = (summary(OHIO_GRCH.lm.6)$coefficients["T_Tbar2","Std. Error"])^2
+Var_Tsq_woP = (summary(OHIO_GRCH.lm.6)$coefficients["T_Tbar2sq","Std. Error"])^2
+vcov(OHIO_GRCH.lm.6)
+Cov_both_woP =  2.136903e-08 
+
+Beta1_woP = summary(OHIO_GRCH.lm.6)$coefficients["T_Tbar2","Estimate"]
+Beta2_woP = summary(OHIO_GRCH.lm.6)$coefficients["T_Tbar2sq","Estimate"]
+
+Theta_woP = Beta1_woP/(Beta1_woP+Beta2_woP)
+Theta1_woP = Beta2_woP/(Beta1_woP+Beta2_woP)^2
+Theta2_woP = Beta1_woP/(Beta1_woP+Beta2_woP)^2
+
+Var_Theta_woP = Theta1_woP^2*Var_T_woP + Theta2_woP^2*Var_Tsq_woP + 2*Theta1_woP*Theta2_woP*Cov_both
+SE_woP = sqrt(Var_Theta_woP)
+SE_woP
+
+
+Var_T_wP = (summary(OHIO_GRCH.lm.5)$coefficients["T_Tbar2","Std. Error"])^2
+Var_Tsq_wP = (summary(OHIO_GRCH.lm.5)$coefficients["T_Tbar2sq","Std. Error"])^2
+vcov(OHIO_GRCH.lm.5)
+Cov_both_wP = 1.794995e-07
+
+Beta1_wP = summary(OHIO_GRCH.lm.5)$coefficients["T_Tbar2","Estimate"]
+Beta2_wP = summary(OHIO_GRCH.lm.5)$coefficients["T_Tbar2sq","Estimate"]
+
+Theta_wP = Beta1_wP/(Beta1_woP+Beta2_wP)
+Theta1_wP = Beta2_wP/(Beta1_woP+Beta2_wP)^2
+Theta2_wP = Beta1_wP/(Beta1_woP+Beta2_wP)^2
+
+Var_Theta_wP = Theta1_wP^2*Var_T_wP + Theta2_wP^2*Var_Tsq_wP + 2*Theta1_wP*Theta2_wP*Cov_both_wP
+SE_wP = sqrt(Var_Theta_wP)
+SE_wP
+
+
+
+
+
+
 
 
 ## Price Compare
