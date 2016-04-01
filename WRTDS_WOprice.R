@@ -30,6 +30,7 @@ Beta1_woP = summary(ILLI_VC.lm.6)$coefficients["T_Tbar2","Estimate"]
 Beta2_woP = summary(ILLI_VC.lm.6)$coefficients["T_Tbar2sq","Estimate"]
 
 Theta_woP = Beta1_woP/(Beta1_woP+Beta2_woP)
+Theta_woP
 Theta1_woP = Beta2_woP/(Beta1_woP+Beta2_woP)^2
 Theta2_woP = Beta1_woP/(Beta1_woP+Beta2_woP)^2
 
@@ -46,9 +47,10 @@ Cov_both_wP = 1.852496e-07
 Beta1_wP = summary(ILLI_VC.lm.5)$coefficients["T_Tbar2","Estimate"]
 Beta2_wP = summary(ILLI_VC.lm.5)$coefficients["T_Tbar2sq","Estimate"]
 
-Theta_wP = Beta1_wP/(Beta1_woP+Beta2_wP)
-Theta1_wP = Beta2_wP/(Beta1_woP+Beta2_wP)^2
-Theta2_wP = Beta1_wP/(Beta1_woP+Beta2_wP)^2
+Theta_wP = Beta1_wP/(Beta1_wP+Beta2_wP)
+Theta_wP
+Theta1_wP = Beta2_wP/(Beta1_wP+Beta2_wP)^2
+Theta2_wP = Beta1_wP/(Beta1_wP+Beta2_wP)^2
 
 Var_Theta_wP = Theta1_wP^2*Var_T_wP + Theta2_wP^2*Var_Tsq_wP + 2*Theta1_wP*Theta2_wP*Cov_both_wP
 SE_wP = sqrt(Var_Theta_wP)
@@ -85,6 +87,7 @@ Beta1_woP = summary(IOWA_WAP.lm.6)$coefficients["T_Tbar2","Estimate"]
 Beta2_woP = summary(IOWA_WAP.lm.6)$coefficients["T_Tbar2sq","Estimate"]
 
 Theta_woP = Beta1_woP/(Beta1_woP+Beta2_woP)
+Theta_woP
 Theta1_woP = Beta2_woP/(Beta1_woP+Beta2_woP)^2
 Theta2_woP = Beta1_woP/(Beta1_woP+Beta2_woP)^2
 
@@ -101,9 +104,10 @@ Cov_both_wP = 1.181876e-06
 Beta1_wP = summary(IOWA_WAP.lm.5)$coefficients["T_Tbar2","Estimate"]
 Beta2_wP = summary(IOWA_WAP.lm.5)$coefficients["T_Tbar2sq","Estimate"]
 
-Theta_wP = Beta1_wP/(Beta1_woP+Beta2_wP)
-Theta1_wP = Beta2_wP/(Beta1_woP+Beta2_wP)^2
-Theta2_wP = Beta1_wP/(Beta1_woP+Beta2_wP)^2
+Theta_wP = Beta1_wP/(Beta1_wP+Beta2_wP)
+Theta_wP
+Theta1_wP = Beta2_wP/(Beta1_wP+Beta2_wP)^2
+Theta2_wP = Beta1_wP/(Beta1_wP+Beta2_wP)^2
 
 Var_Theta_wP = Theta1_wP^2*Var_T_wP + Theta2_wP^2*Var_Tsq_wP + 2*Theta1_wP*Theta2_wP*Cov_both_wP
 SE_wP = sqrt(Var_Theta_wP)
@@ -141,6 +145,7 @@ Beta1_woP = summary(MIZZ_HE.lm.6)$coefficients["T_Tbar2","Estimate"]
 Beta2_woP = summary(MIZZ_HE.lm.6)$coefficients["T_Tbar2sq","Estimate"]
 
 Theta_woP = Beta1_woP/(Beta1_woP+Beta2_woP)
+Theta_woP
 Theta1_woP = Beta2_woP/(Beta1_woP+Beta2_woP)^2
 Theta2_woP = Beta1_woP/(Beta1_woP+Beta2_woP)^2
 
@@ -157,9 +162,10 @@ Cov_both_wP = 4.726005e-07
 Beta1_wP = summary(MIZZ_HE.lm.5)$coefficients["T_Tbar2","Estimate"]
 Beta2_wP = summary(MIZZ_HE.lm.5)$coefficients["T_Tbar2sq","Estimate"]
 
-Theta_wP = Beta1_wP/(Beta1_woP+Beta2_wP)
-Theta1_wP = Beta2_wP/(Beta1_woP+Beta2_wP)^2
-Theta2_wP = Beta1_wP/(Beta1_woP+Beta2_wP)^2
+Theta_wP = Beta1_wP/(Beta1_wP+Beta2_wP)
+Theta_wP
+Theta1_wP = Beta2_wP/(Beta1_wP+Beta2_wP)^2
+Theta2_wP = Beta1_wP/(Beta1_wP+Beta2_wP)^2
 
 Var_Theta_wP = Theta1_wP^2*Var_T_wP + Theta2_wP^2*Var_Tsq_wP + 2*Theta1_wP*Theta2_wP*Cov_both_wP
 SE_wP = sqrt(Var_Theta_wP)
@@ -198,6 +204,7 @@ Beta1_woP = summary(MSSP_CL.lm.6)$coefficients["T_Tbar2","Estimate"]
 Beta2_woP = summary(MSSP_CL.lm.6)$coefficients["T_Tbar2sq","Estimate"]
 
 Theta_woP = Beta1_woP/(Beta1_woP+Beta2_woP)
+Theta_woP
 Theta1_woP = Beta2_woP/(Beta1_woP+Beta2_woP)^2
 Theta2_woP = Beta1_woP/(Beta1_woP+Beta2_woP)^2
 
@@ -214,9 +221,10 @@ Cov_both_wP = 2.052156e-07
 Beta1_wP = summary(MSSP_CL.lm.5)$coefficients["T_Tbar2","Estimate"]
 Beta2_wP = summary(MSSP_CL.lm.5)$coefficients["T_Tbar2sq","Estimate"]
 
-Theta_wP = Beta1_wP/(Beta1_woP+Beta2_wP)
-Theta1_wP = Beta2_wP/(Beta1_woP+Beta2_wP)^2
-Theta2_wP = Beta1_wP/(Beta1_woP+Beta2_wP)^2
+Theta_wP = Beta1_wP/(Beta1_wP+Beta2_wP)
+Theta_wP
+Theta1_wP = Beta2_wP/(Beta1_wP+Beta2_wP)^2
+Theta2_wP = Beta1_wP/(Beta1_wP+Beta2_wP)^2
 
 Var_Theta_wP = Theta1_wP^2*Var_T_wP + Theta2_wP^2*Var_Tsq_wP + 2*Theta1_wP*Theta2_wP*Cov_both_wP
 SE_wP = sqrt(Var_Theta_wP)
@@ -254,6 +262,7 @@ Beta1_woP = summary(MSSP_GR.lm.6)$coefficients["T_Tbar2","Estimate"]
 Beta2_woP = summary(MSSP_GR.lm.6)$coefficients["T_Tbar2sq","Estimate"]
 
 Theta_woP = Beta1_woP/(Beta1_woP+Beta2_woP)
+Theta_woP
 Theta1_woP = Beta2_woP/(Beta1_woP+Beta2_woP)^2
 Theta2_woP = Beta1_woP/(Beta1_woP+Beta2_woP)^2
 
@@ -270,9 +279,10 @@ Cov_both_wP = 3.354946e-07
 Beta1_wP = summary(MSSP_GR.lm.5)$coefficients["T_Tbar2","Estimate"]
 Beta2_wP = summary(MSSP_GR.lm.5)$coefficients["T_Tbar2sq","Estimate"]
 
-Theta_wP = Beta1_wP/(Beta1_woP+Beta2_wP)
-Theta1_wP = Beta2_wP/(Beta1_woP+Beta2_wP)^2
-Theta2_wP = Beta1_wP/(Beta1_woP+Beta2_wP)^2
+Theta_wP = Beta1_wP/(Beta1_wP+Beta2_wP)
+Theta_wP
+Theta1_wP = Beta2_wP/(Beta1_wP+Beta2_wP)^2
+Theta2_wP = Beta1_wP/(Beta1_wP+Beta2_wP)^2
 
 Var_Theta_wP = Theta1_wP^2*Var_T_wP + Theta2_wP^2*Var_Tsq_wP + 2*Theta1_wP*Theta2_wP*Cov_both_wP
 SE_wP = sqrt(Var_Theta_wP)
@@ -312,6 +322,7 @@ Beta1_woP = summary(MSSP_OUT.lm.6)$coefficients["T_Tbar2","Estimate"]
 Beta2_woP = summary(MSSP_OUT.lm.6)$coefficients["T_Tbar2sq","Estimate"]
 
 Theta_woP = Beta1_woP/(Beta1_woP+Beta2_woP)
+Theta_woP
 Theta1_woP = Beta2_woP/(Beta1_woP+Beta2_woP)^2
 Theta2_woP = Beta1_woP/(Beta1_woP+Beta2_woP)^2
 
@@ -328,9 +339,10 @@ Cov_both_wP = 9.598074e-08
 Beta1_wP = summary(MSSP_OUT.lm.5)$coefficients["T_Tbar2","Estimate"]
 Beta2_wP = summary(MSSP_OUT.lm.5)$coefficients["T_Tbar2sq","Estimate"]
 
-Theta_wP = Beta1_wP/(Beta1_woP+Beta2_wP)
-Theta1_wP = Beta2_wP/(Beta1_woP+Beta2_wP)^2
-Theta2_wP = Beta1_wP/(Beta1_woP+Beta2_wP)^2
+Theta_wP = Beta1_wP/(Beta1_wP+Beta2_wP)
+Theta_wP
+Theta1_wP = Beta2_wP/(Beta1_wP+Beta2_wP)^2
+Theta2_wP = Beta1_wP/(Beta1_wP+Beta2_wP)^2
 
 Var_Theta_wP = Theta1_wP^2*Var_T_wP + Theta2_wP^2*Var_Tsq_wP + 2*Theta1_wP*Theta2_wP*Cov_both_wP
 SE_wP = sqrt(Var_Theta_wP)
@@ -367,6 +379,7 @@ Beta1_woP = summary(MSSP_TH.lm.6)$coefficients["T_Tbar2","Estimate"]
 Beta2_woP = summary(MSSP_TH.lm.6)$coefficients["T_Tbar2sq","Estimate"]
 
 Theta_woP = Beta1_woP/(Beta1_woP+Beta2_woP)
+Theta_woP
 Theta1_woP = Beta2_woP/(Beta1_woP+Beta2_woP)^2
 Theta2_woP = Beta1_woP/(Beta1_woP+Beta2_woP)^2
 
@@ -383,9 +396,10 @@ Cov_both_wP =  1.874857e-07
 Beta1_wP = summary(MSSP_TH.lm.5)$coefficients["T_Tbar2","Estimate"]
 Beta2_wP = summary(MSSP_TH.lm.5)$coefficients["T_Tbar2sq","Estimate"]
 
-Theta_wP = Beta1_wP/(Beta1_woP+Beta2_wP)
-Theta1_wP = Beta2_wP/(Beta1_woP+Beta2_wP)^2
-Theta2_wP = Beta1_wP/(Beta1_woP+Beta2_wP)^2
+Theta_wP = Beta1_wP/(Beta1_wP+Beta2_wP)
+Theta_wP
+Theta1_wP = Beta2_wP/(Beta1_wP+Beta2_wP)^2
+Theta2_wP = Beta1_wP/(Beta1_wP+Beta2_wP)^2
 
 Var_Theta_wP = Theta1_wP^2*Var_T_wP + Theta2_wP^2*Var_Tsq_wP + 2*Theta1_wP*Theta2_wP*Cov_both_wP
 SE_wP = sqrt(Var_Theta_wP)
@@ -423,6 +437,7 @@ Beta1_woP = summary(OHIO_GRCH.lm.6)$coefficients["T_Tbar2","Estimate"]
 Beta2_woP = summary(OHIO_GRCH.lm.6)$coefficients["T_Tbar2sq","Estimate"]
 
 Theta_woP = Beta1_woP/(Beta1_woP+Beta2_woP)
+Theta_woP
 Theta1_woP = Beta2_woP/(Beta1_woP+Beta2_woP)^2
 Theta2_woP = Beta1_woP/(Beta1_woP+Beta2_woP)^2
 
@@ -439,13 +454,15 @@ Cov_both_wP = 1.794995e-07
 Beta1_wP = summary(OHIO_GRCH.lm.5)$coefficients["T_Tbar2","Estimate"]
 Beta2_wP = summary(OHIO_GRCH.lm.5)$coefficients["T_Tbar2sq","Estimate"]
 
-Theta_wP = Beta1_wP/(Beta1_woP+Beta2_wP)
-Theta1_wP = Beta2_wP/(Beta1_woP+Beta2_wP)^2
-Theta2_wP = Beta1_wP/(Beta1_woP+Beta2_wP)^2
+Theta_wP = Beta1_wP/(Beta1_wP+Beta2_wP)
+Theta_wP
+Theta1_wP = Beta2_wP/(Beta1_wP+Beta2_wP)^2
+Theta2_wP = Beta1_wP/(Beta1_wP+Beta2_wP)^2
 
 Var_Theta_wP = Theta1_wP^2*Var_T_wP + Theta2_wP^2*Var_Tsq_wP + 2*Theta1_wP*Theta2_wP*Cov_both_wP
 SE_wP = sqrt(Var_Theta_wP)
 SE_wP
+
 
 
 
