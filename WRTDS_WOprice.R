@@ -34,7 +34,11 @@ Theta_woP
 Theta1_woP = Beta2_woP/(Beta1_woP+Beta2_woP)^2
 Theta2_woP = Beta1_woP/(Beta1_woP+Beta2_woP)^2
 
-Var_Theta_woP = Theta1_woP^2*Var_T_woP + Theta2_woP^2*Var_Tsq_woP + 2*Theta1_woP*Theta2_woP*Cov_both
+Var_Theta_woP_corr = Var_T_woP + Var_Tsq_woP + 2*Cov_both_woP              ## correction of calculation
+SE_woP_corr = sqrt(Var_Theta_woP_corr)
+SE_woP_corr
+
+Var_Theta_woP = Theta1_woP^2*Var_T_woP + Theta2_woP^2*Var_Tsq_woP + 2*Theta1_woP*Theta2_woP*Cov_both_woP
 SE_woP = sqrt(Var_Theta_woP)
 SE_woP
 
